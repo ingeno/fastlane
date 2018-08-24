@@ -76,11 +76,12 @@ module Fastlane
 
       def self.configure_rspec(params)
         RSpec.configure do |c|
-          c.before(:each) do
+          c.before(:each) do |example|
             caps = params[:caps] || {}
             caps[:platformName] ||= params[:platform]
             caps[:autoAcceptAlerts] ||= true
             caps[:app] = params[:app_path]
+            caps[:name] = example.description
 
             appium_lib = params[:appium_lib] || {}
 
