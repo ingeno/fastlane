@@ -85,12 +85,17 @@ module Fastlane
 
             appium_lib = params[:appium_lib] || {}
 
-            @driver = Appium::Driver.new(
+            FastlaneCore::PrintTable.print_values(
+              config: caps,
+              title: "Appium Capabilities"
+            )
+
+            @driver = Appium::Driver.new({
               caps: caps,
               server_url: params[:host],
               port: params[:port],
               appium_lib: appium_lib
-            ).start_driver
+            }, true).start_driver
             Appium.promote_appium_methods(RSpec::Core::ExampleGroup)
           end
 
