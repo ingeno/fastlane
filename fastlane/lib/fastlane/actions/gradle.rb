@@ -37,7 +37,7 @@ module Fastlane
         # Construct our flags
         flags = []
         flags << "-p #{project_dir.shellescape}"
-        flags << params[:properties].map { |k, v| "-P#{k.to_s.shellescape}=#{v.to_s.shellescape}" }.join(' ') unless params[:properties].nil?
+        flags << params[:properties].map { |k, v| "-P#{k.to_s.shellescape}=\"#{v.to_s}\"" }.join(' ') unless params[:properties].nil?
         flags << params[:system_properties].map { |k, v| "-D#{k.to_s.shellescape}=#{v.to_s.shellescape}" }.join(' ') unless params[:system_properties].nil?
         flags << params[:flags] unless params[:flags].nil?
 
